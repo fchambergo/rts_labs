@@ -1,6 +1,11 @@
 <section>
-    <h4>Past Search Queries</h4>
-    <div *ngFor="let result of history">
-        <p>Search Query: <span>{{result}}</span></p>
-    </div>
+    <h1>History Page - Past Search Queries</h1>
+    <ng-container *ngIf="history.length > 0 else noResults">
+        <div *ngFor="let result of history">
+            <p>Search Query: <span>{{result}}</span></p>
+        </div>
+    </ng-container>
+    <ng-template #noResults>
+        <p>No search queries yet</p>
+    </ng-template>
 </section>
