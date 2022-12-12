@@ -1,1 +1,6 @@
-<p>history works!</p>
+<section>
+    <h4>Past Search Queries</h4>
+    <div *ngFor="let result of history">
+        <p>Search Query: <span>{{result}}</span></p>
+    </div>
+</section>

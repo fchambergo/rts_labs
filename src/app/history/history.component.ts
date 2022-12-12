@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlgoliaApi } from '../shared/algolia_api.service';
 
 @Component({
   selector: 'app-history',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
+  public history: string[] = [];
 
-  constructor() { }
+  constructor(private service: AlgoliaApi) { }
 
   ngOnInit(): void {
+    this.history = this.service.getHistory();
   }
 
 }
