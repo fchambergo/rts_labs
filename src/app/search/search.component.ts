@@ -28,7 +28,6 @@ export class SearchComponent implements OnInit {
 
       this.service.searchQuery(query as string).subscribe(res => { 
         this.results = res;
-        console.log(this.service.getHistory());
       })
     }
   }
