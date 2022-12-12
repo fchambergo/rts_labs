@@ -1,11 +1,15 @@
+<!-- Search Page -->
+
 <h1>Search Page</h1>
 
+<!-- Search Form -->
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
     <input id="query" placeholder="Place query here" name="query" type="text" formControlName="query">
 
     <button type="submit">Submit</button>
 </form>
 
+<!-- Display results from search query -->
 <section id="result_list">
     <section *ngFor="let result of results">
         <div *ngIf="result.title != null">

@@ -1,11 +1,17 @@
+<!-- History Page -->
+
 <section>
     <h1>History Page - Past Search Queries</h1>
-    <ng-container *ngIf="history.length > 0 else noResults">
+
+    <!-- Conditional rendering to display previous searches if there are previous searches -->
+    <ng-container *ngIf="history.length > 0 else noSearches">
         <div *ngFor="let result of history">
             <p>Search Query: <span>{{result}}</span></p>
         </div>
     </ng-container>
-    <ng-template #noResults>
+
+    <!-- Conditional rendering to display `no search queries yet` if there are no previous searches -->
+    <ng-template #noSearches>
         <p>No search queries yet</p>
     </ng-template>
 </section>
