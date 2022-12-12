@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlgoliaApi } from '../shared/algolia_api.service';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +17,7 @@ export class SearchComponent implements OnInit {
   })
 
 
-  constructor() { }
+  constructor(private service: AlgoliaApi) { }
 
   ngOnInit(): void {
 
@@ -26,5 +27,7 @@ export class SearchComponent implements OnInit {
     const query = this.searchForm.get("query")?.value;
 
     console.log(query);
+
+    this.service.searchQuery(query as string).subscribe(res => {console.log(res)})
   }
 }

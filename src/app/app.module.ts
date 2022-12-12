@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { HistoryComponent } from './history/history.component';
+import { AlgoliaApi } from './shared/algolia_api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { HistoryComponent } from './history/history.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AlgoliaApi],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
