@@ -4,3 +4,15 @@
 
     <button type="submit">Submit</button>
 </form>
+
+<section id="result_list">
+    <section *ngFor="let result of results">
+        <div *ngIf="result.title != null">
+            <h3>Title: {{result.title}}</h3>
+            <span>Author: {{result.author}}</span>
+            <tr></tr>
+            <a href="{{result.url}}">{{result.url}}</a>
+            <hr>
+        </div>
+    </section>
+</section>

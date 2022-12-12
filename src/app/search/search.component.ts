@@ -10,11 +10,10 @@ import { AlgoliaApi } from '../shared/algolia_api.service';
 export class SearchComponent implements OnInit {
 
   searchForm = new FormGroup({
-    query: new FormControl("", Validators.required),
-    //tags : new FormControl(""),
-    //numericFilters: new FormControl("")
-    //page: new FormControl("")
+    query: new FormControl("", Validators.required)
   })
+
+  results: any[] = [];
 
 
   constructor(private service: AlgoliaApi) { }
@@ -24,10 +23,13 @@ export class SearchComponent implements OnInit {
   }
 
   onSubmit() {
-    const query = this.searchForm.get("query")?.value;
+    if (this.searchForm.valid) {
+      const query = this.searchForm.get("query")?.value;
 
-    console.log(query);
-
-    this.service.searchQuery(query as string).subscribe(res => {console.log(res)})
+      this.service.searchQuery(query as string).subscribe(res => { 
+        this.results = res;
+        console.log(this.service.getHistory());
+      })
+    }
   }
 }

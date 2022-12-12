@@ -1,29 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({ providedIn: "root" })
 export class AlgoliaApi {
     constructor(private http: HttpClient) { }
 
     private baseURL: string = "http://hn.algolia.com/api/v1/";
-    public searchHistory: any[] = [];
+    public searchHistory: string[] = [];
 
     searchQuery(query: string) {
         let params = new HttpParams();
         params = params.set("query", query)
 
-        let headers = new HttpHeaders({
-            "Content-Type": "application/json"
-        })
-        headers.append('Access-Control-Allow-Origin', '*');
-
-        console.log(this.baseURL + params);
-
-        return this.http.get(this.baseURL + "search", {params: params, headers: headers });
-    }
-
-    addToHistory(search: any): void {
-        this.searchHistory.push(search);
+        return this.http.get(this.baseURL + "search", { params: params })
+            .pipe(map((response: any) => {
+                this.searchHistory.push(query);
+                return response.hits
+            }));
     }
 
     getHistory() {
